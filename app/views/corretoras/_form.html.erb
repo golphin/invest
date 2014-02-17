@@ -1,0 +1,25 @@
+<%= form_for(@corretora) do |f| %>
+  <% if @corretora.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@corretora.errors.count, "error") %> prohibited this corretora from being saved:</h2>
+
+      <ul>
+      <% @corretora.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :corretora %><br>
+    <%= f.text_field :corretora %>
+  </div>
+  <div class="field">
+    <%= f.label :ativo %><br>
+    <%= f.check_box :ativo %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

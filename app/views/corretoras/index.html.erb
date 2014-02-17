@@ -1,0 +1,29 @@
+<h1>Listing corretoras</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Corretora</th>
+      <th>Ativo</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @corretoras.each do |corretora| %>
+      <tr>
+        <td><%= corretora.corretora %></td>
+        <td><%= corretora.ativo %></td>
+        <td><%= link_to 'Show', corretora %></td>
+        <td><%= link_to 'Edit', edit_corretora_path(corretora) %></td>
+        <td><%= link_to 'Destroy', corretora, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Corretora', new_corretora_path %>
