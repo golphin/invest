@@ -9,4 +9,19 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Invest::Application.config.secret_key_base = '1b060e113bd01a491b35749a011b62f82381d621bfeebcf1568650ca066c4eb1beb7c0aaaca59a200ce9546b201b75cca1893b0f9393620fcb79ee59d980d11a'
+#Invest::Application.config.secret_key_base = '1b060e113bd01a491b35749a011b62f82381d621bfeebcf1568650ca066c4eb1beb7c0aaaca59a200ce9546b201b75cca1893b0f9393620fcb79ee59d980d11a'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+Invest::Application.config.secret_key_base = secure_token
